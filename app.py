@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-app.secret_key = "bcasbhd31231923unazcnqbndubqsiubf"
+app.secret_key = ""
 
 client = pymongo.MongoClient("mongodb+srv://tempGod:tempGod@thehive.wexmn.mongodb.net/hive?retryWrites=true&w=majority")
 db = client.hive
