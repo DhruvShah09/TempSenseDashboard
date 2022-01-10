@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Successful</title>
+</head>
+<body>
+<h1>You have logged in as: {{username}}</h1>
+
+<h1></h1>
+  <p id=temperatureReading></p>
+  <script>
+  	const Http = new XMLHttpRequest();
+	const url='https s://temp-sense.herokuapp.com/getTemp/?idnum=eddy';
+	Http.open("GET", url);
+	Http.send();
+
+	Http.onreadystatechange = (e) => {
+  	console.log(Http.responseText)
+  	let response = JSON.parse(Http.responseText);
+  	document.querySelector("#temperatureReading").innerHTML = response.temperature;
+  	} 
+
+
+  	 </script>
+
+
+</body>
+</html>

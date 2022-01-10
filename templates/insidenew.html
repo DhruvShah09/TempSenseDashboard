@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}}">
+<script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='tilt.jquery.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='insidenewcss.css')}}">
+<!------ Include the above in your HEAD tag --------->
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="weather-card one">
+				<div class="top">
+					<div class="wrapper">
+						<div class="mynav">
+							<a href="https://temp-sense.herokuapp.com/login"><span class="lnr lnr-chevron-left"></span></a>
+							
+						</div>
+						<h1 class="heading">Welcome, {{username}}.</h1>
+						<h3 class="location">Your Latest Temperature</h3>
+						<p class="temp">
+							<span class="temp-value" id=temperatureReading></span>
+							<span class="deg">0</span>
+							<a href="javascript:;"><span class="temp-type">F</span></a>
+						</p>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+						<ul class="forecast">
+							<a href="javascript:;"><span class="lnr go-up"></span></a>
+							<li class="active">
+								<span class="date">1 Check Ago: </span>
+								<span class="lnr condition">
+									<span class="temp" id=tempRead2><span class="deg">0</span><span class="temp-type">F</span></span>
+								</span>
+							</li>
+							<li>
+								<span class="date">2 Checks Ago: </span>
+								<span class="lnr condition">
+									<span class="temp" id=tempRead3><span class="deg">0</span><span class="temp-type">F</span></span>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+  <script>
+  	const Http = new XMLHttpRequest();
+	const url='https://temp-sense.herokuapp.com/getTemp/?idnum={{username}}';
+	Http.open("GET", url);
+	Http.send();
+
+	Http.onreadystatechange = (e) => {
+  	console.log(Http.responseText)
+  	let response = JSON.parse(Http.responseText);
+  	document.querySelector("#temperatureReading").innerHTML = response.temperature;
+  	document.querySelector("#tempRead2").innerHTML = response.temperature2;
+  	document.querySelector("#tempRead3").innerHTML = response.temperature3;
+  	} 
+
+
+  	 </script>
